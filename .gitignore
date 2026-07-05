@@ -1,0 +1,4 @@
+# local dev / editor artifacts
+.claude/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,5 @@
+{
+  "sets": [
+    { "id": "base-game", "name": "Base Game", "file": "data/base-game.json" }
+  ]
+}
