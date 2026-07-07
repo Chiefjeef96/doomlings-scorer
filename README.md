@@ -31,13 +31,18 @@ Pure scoring logic is unit-tested with plain Node (no framework):
 node tests/scoring.test.js
 ```
 
-## Rebuild the card data (only if the CSV changes / new expansion)
+## Rebuild the card data (only if the workbook changes / new expansion)
+
+The source of truth is the Excel workbook `doomlings_base_game_cards.xlsx`
+(three sheets: Traits, Ages, Catastrophes). To regenerate `data/base-game.json`:
 
 ```bash
-python tools/parse_csv.py <path-to.csv> <set-id> "<Set Name>"
-# defaults to the base-game CSV in ../.claude/Doomlings/
-python tools/parse_csv.py
+python tools/parse_xlsx.py               # uses the base-game workbook by default
+# or, for another set:
+python tools/parse_xlsx.py my-set.xlsx my-set "My Set"
 ```
+
+Requires `openpyxl` (`pip install openpyxl`).
 
 ---
 
@@ -47,7 +52,8 @@ python tools/parse_csv.py
 |---|---|
 | `index.html` | The page shell. Loads the four scripts in order and shows the app. |
 | `css/styles.css` | All styling. Mobile-first, dark, Doomlings colors. |
-| `tools/parse_csv.py` | **Build tool.** Turns the raw card CSV into clean `data/base-game.json`, parsing each trait's text into structured, reusable effect objects. Flags anything it can't confidently parse into a `needsReview` list (currently empty). |
+| `tools/parse_xlsx.py` | **Build tool.** Turns the Excel workbook into clean `data/base-game.json`, parsing each trait's text into structured, reusable effect objects. Flags anything it can't confidently parse into a `needsReview` list (currently empty). |
+| `doomlings_base_game_cards.xlsx` | The source workbook you edit when a card is wrong. Re-run the build tool after changing it. |
 | `data/base-game.json` | The card database the app actually reads. Traits, ages, catastrophes — data only, no logic. |
 | `data/sets.json` | Lists which card sets to load. **Add an expansion here** (one line) and the app picks it up with zero code changes. |
 | `js/data-loader.js` | Loads every set in `sets.json` and merges them into one card pool. |

@@ -21,8 +21,8 @@
   // ---- state ----
   const blankPlayer = (i) => ({
     id: "p" + i, name: "Player " + (i + 1), order: i,
-    handCount: 0, handColors: 0, handDominants: 0, genePool: 5,
-    pile: [], // array of card names
+    handCount: 0, handColors: 0, handDominants: 0, handEffectCards: 0, genePool: 5,
+    pile: [], // array of card names (duplicates allowed, e.g. multiple Kidney/Swarm)
   });
 
   let G = load() || {
@@ -68,9 +68,10 @@
     const kinds = new Set();
     for (const n of p.pile) for (const e of (cardOf(n).scoringEffects || [])) kinds.add(e.kind);
     return {
-      colors: kinds.has("perColorInHand"),        // Saudade
-      dominants: kinds.has("perDominantInHand"),   // Brave
-      genePool: kinds.has("addGenePool"),          // Altruistic
+      colors: kinds.has("perColorInHand"),                 // Saudade
+      dominants: kinds.has("perDominantInHand"),           // Brave
+      genePool: kinds.has("valueEqualsGenePool"),          // Altruistic, Random Fertilization
+      effectCards: kinds.has("valueEqualsHandEffectCards"),// Boredom
     };
   }
 
@@ -149,9 +150,10 @@
   function renderPiles() {
     const p = playersInOrder()[G.activePlayer] || playersInOrder()[0];
     const q = (G._search || "").toLowerCase();
+    // Duplicates are allowed (a pile can hold several Kidney / Swarm), so we do
+    // NOT filter out cards already in the pile.
     const results = q.length
-      ? DB.traits.filter((t) =>
-          t.name.toLowerCase().includes(q) && !p.pile.includes(t.name)).slice(0, 40)
+      ? DB.traits.filter((t) => t.name.toLowerCase().includes(q)).slice(0, 40)
       : [];
     const needs = handNeeds(p);
 
@@ -190,13 +192,14 @@
         </div>
       </div>
 
-      ${(needs.colors || needs.dominants || needs.genePool) ? `
+      ${(needs.colors || needs.dominants || needs.genePool || needs.effectCards) ? `
       <div class="card">
         <h3>${escapeHTML(p.name)} — extra info needed</h3>
         <p class="hint" style="margin:0 0 8px">A trait in this pile scores off these.</p>
         ${needs.colors ? counterRow("Distinct colors in hand (Saudade)", "hc", p.handColors, 0, 5) : ""}
         ${needs.dominants ? counterRow("Dominant cards in hand (Brave)", "hd", p.handDominants, 0, 12) : ""}
-        ${needs.genePool ? counterRow("Gene Pool (Altruistic adds it)", "gp", p.genePool, 0, 20) : ""}
+        ${needs.effectCards ? counterRow("Cards in hand with effects (Boredom)", "ec", p.handEffectCards, 0, 20) : ""}
+        ${needs.genePool ? counterRow("Gene Pool (Altruistic / Random Fertilization)", "gp", p.genePool, 0, 20) : ""}
       </div>` : ""}`;
   }
 
@@ -278,46 +281,57 @@
         </select>`);
     }
 
-    // Hyper-Intelligence — each opponent discards a chosen color
+    // Hyper-Intelligence — choose ONE color; every opponent discards a trait of it
     if (p.pile.includes("HYPER-INTELLIGENCE")) {
-      const list = getChoice("hyperIntelligence", p.id) || [];
+      const hi = getChoice("hyperIntelligence", p.id) || {};
       const opps = order.filter((o) => o.id !== p.id);
-      bits.push(`<label>Hyper-Intelligence — pick a color each opponent discards</label>` +
-        opps.map((o) => {
-          const entry = list.find((x) => x.opponentId === o.id) || {};
-          const matching = entry.color ? o.pile.filter((n) => cardOf(n).color === entry.color) : [];
-          return `<div class="row tight" style="margin-bottom:6px">
-            <div style="flex:0 0 32%">${escapeHTML(o.name)}</div>
-            <select data-act="hi-color" data-pid="${p.id}" data-opp="${o.id}">
-              <option value="">color…</option>
-              ${COLORS.map((c) => `<option value="${c}" ${entry.color === c ? "selected" : ""}>${c}</option>`).join("")}
-            </select>
+      bits.push(`
+        <label>Hyper-Intelligence — pick 1 color; every opponent discards a trait of it</label>
+        <select data-act="hi-color" data-pid="${p.id}">
+          <option value="">color…</option>
+          ${COLORS.map((c) => `<option value="${c}" ${hi.color === c ? "selected" : ""}>${c}</option>`).join("")}
+        </select>` +
+        (hi.color ? opps.map((o) => {
+          const matching = o.pile.filter((n) => cardOf(n).color === hi.color);
+          const cur = (hi.discards && hi.discards[o.id]) || matching[0];
+          return `<div class="row tight" style="margin-top:6px">
+            <div style="flex:0 0 32%">${escapeHTML(o.name)} discards</div>
             <select data-act="hi-trait" data-pid="${p.id}" data-opp="${o.id}" ${matching.length ? "" : "disabled"}>
               ${matching.length ? matching.map((n) =>
-                `<option value="${escapeAttr(n)}" ${entry.discardTraitName === n ? "selected" : ""}>${escapeHTML(n)}</option>`).join("")
-                : `<option>no ${entry.color || ""} trait</option>`}
-            </select>
-          </div>`;
-        }).join(""));
+                `<option value="${escapeAttr(n)}" ${cur === n ? "selected" : ""}>${escapeHTML(n)}</option>`).join("")
+                : `<option>no ${hi.color} trait</option>`}
+            </select></div>`;
+        }).join("") : ""));
     }
 
-    // Boredom — colorless cards in hand after drawing 2
-    if (p.pile.includes("BOREDOM")) {
-      const v = (G.choices.boredom && G.choices.boredom[p.id]) || 0;
+    // Sentience — choose a color; +1 for each of YOUR traits of that color
+    if (p.pile.includes("SENTIENCE")) {
+      const cur = getChoice("sentience", p.id) || "";
       bits.push(`
-        <label>Boredom — draw 2, then how many <b>colorless</b> cards in hand?</label>
-        <div class="counter">
-          <button class="btn small" data-act="bore-" data-pid="${p.id}">−</button>
-          <div class="val" style="min-width:30px">${v}</div>
-          <button class="btn small" data-act="bore+" data-pid="${p.id}">+</button>
-        </div>`);
+        <label>Sentience — choose a color (+1 per your trait of it)</label>
+        <select data-act="sentience" data-pid="${p.id}">
+          <option value="">color…</option>
+          ${COLORS.map((c) => `<option value="${c}" ${cur === c ? "selected" : ""}>${c}</option>`).join("")}
+        </select>`);
     }
 
-    // Deus Ex Machina (catastrophe): each player draws, adds face value (max 7)
+    // Viral — choose a color; each opponent gets -1 per trait of that color
+    if (p.pile.includes("VIRAL")) {
+      const cur = getChoice("viral", p.id) || "";
+      bits.push(`
+        <label>Viral — choose a color (each opponent −1 per their trait of it)</label>
+        <select data-act="viral" data-pid="${p.id}">
+          <option value="">color…</option>
+          ${COLORS.map((c) => `<option value="${c}" ${cur === c ? "selected" : ""}>${c}</option>`).join("")}
+        </select>`);
+    }
+
+    // Deus Ex Machina (catastrophe): each player draws, adds face value (capped)
     if (cata.worldsEnd.kind === "deusExMachina") {
+      const max = cata.worldsEnd.max || 7;
       const v = (G.choices.deusExMachina && G.choices.deusExMachina[p.id]) || 0;
       bits.push(`
-        <label>Deus Ex Machina — face value of your drawn card (max +7)</label>
+        <label>Deus Ex Machina — face value of your drawn card (max +${max})</label>
         <div class="counter">
           <button class="btn small" data-act="deus-" data-pid="${p.id}">−</button>
           <div class="val" style="min-width:30px">${v}</div>
@@ -345,7 +359,9 @@
     }
 
     // Other At-World's-End cards we don't auto-resolve → manual note
-    const known = ["FAITH", "CHERISHED", "HYPER-INTELLIGENCE", "BOREDOM", "PREPPER"];
+    // (Boredom is handled as a hand input on the piles screen.)
+    const known = ["FAITH", "CHERISHED", "HYPER-INTELLIGENCE", "PREPPER",
+                   "SENTIENCE", "VIRAL", "BOREDOM"];
     const manual = pile.filter((c) => c.atWorldsEnd && !known.includes(c.name));
     for (const c of manual) {
       bits.push(`<div class="note">↪ <b>${escapeHTML(c.name)}</b>: ${escapeHTML(c.effect)}
@@ -484,12 +500,12 @@
       case "hd-": { const p = curPile(); p.handDominants = Math.max(0, p.handDominants - 1); return render(); }
       case "gp+": curPile().genePool++; return render();
       case "gp-": { const p = curPile(); p.genePool = Math.max(0, p.genePool - 1); return render(); }
+      case "ec+": curPile().handEffectCards++; return render();
+      case "ec-": { const p = curPile(); p.handEffectCards = Math.max(0, p.handEffectCards - 1); return render(); }
 
       // walkthrough counters
-      case "bore+": return bumpChoiceMap("boredom", pid, +1);
-      case "bore-": return bumpChoiceMap("boredom", pid, -1);
-      case "deus+": return bumpChoiceMap("deusExMachina", pid, +1, 7);
-      case "deus-": return bumpChoiceMap("deusExMachina", pid, -1, 7);
+      case "deus+": return bumpChoiceMap("deusExMachina", pid, +1, deusMax());
+      case "deus-": return bumpChoiceMap("deusExMachina", pid, -1, deusMax());
       case "tie+": return bumpChoiceMap("tieBreak", pid, +1);
       case "tie-": return bumpChoiceMap("tieBreak", pid, -1);
       case "calc": return calculate();
@@ -509,10 +525,17 @@
       case "faith-to": setChoice("faith", pid, { ...(getChoice("faith", pid) || {}), to: v }); return render();
       case "cherished": setChoice("cherished", pid, v || null); return;
       case "cdiscard": setChoice("catastropheDiscard", pid, v); return;
-      case "hi-color": return setHI(pid, t.dataset.opp, { color: v, discardTraitName: null });
-      case "hi-trait": return setHI(pid, t.dataset.opp, { discardTraitName: v });
+      case "sentience": setChoice("sentience", pid, v || null); return render();
+      case "viral": setChoice("viral", pid, v || null); return render();
+      case "hi-color": return setHIColor(pid, v);
+      case "hi-trait": return setHIDiscard(pid, t.dataset.opp, v);
     }
   });
+
+  function deusMax() {
+    const c = DB.cataByName[G.catastropheName];
+    return (c && c.worldsEnd && c.worldsEnd.max) || 7;
+  }
 
   // ---- state ops ----
   function player(id) { return G.players.find((p) => p.id === id); }
@@ -541,13 +564,15 @@
   }
 
   function addTrait(name) {
-    const p = curPile();
-    if (!p.pile.includes(name)) p.pile.push(name);
+    // Duplicates allowed (multiple Kidney / Swarm). Each tap adds one instance.
+    curPile().pile.push(name);
     G._search = ""; render();
   }
   function removeTrait(name) {
-    const p = curPile();
-    p.pile = p.pile.filter((n) => n !== name);
+    // Remove a single instance so duplicates can be trimmed one at a time.
+    const pile = curPile().pile;
+    const i = pile.indexOf(name);
+    if (i >= 0) pile.splice(i, 1);
   }
 
   // choices helpers
@@ -563,19 +588,28 @@
     v = Math.max(0, v); if (max != null) v = Math.min(max, v);
     G.choices[kind][pid] = v; render();
   }
-  function setHI(pid, oppId, patch) {
+  // Hyper-Intelligence: one color for the player; each opponent discards a trait
+  // of that color (default = first matching, overridable per opponent).
+  function setHIColor(pid, color) {
     G.choices.hyperIntelligence = G.choices.hyperIntelligence || {};
-    const list = G.choices.hyperIntelligence[pid] = G.choices.hyperIntelligence[pid] || [];
-    let entry = list.find((x) => x.opponentId === oppId);
-    if (!entry) { entry = { opponentId: oppId }; list.push(entry); }
-    Object.assign(entry, patch);
-    // default the discarded trait to the first matching if color set but no pick
-    if (entry.color && !entry.discardTraitName) {
-      const opp = player(oppId);
-      const m = opp.pile.find((n) => cardOf(n).color === entry.color);
-      entry.discardTraitName = m || null;
+    const entry = { color, discards: {} };
+    if (color) {
+      for (const o of playersInOrder()) {
+        if (o.id === pid) continue;
+        const m = o.pile.find((n) => cardOf(n).color === color);
+        if (m) entry.discards[o.id] = m;
+      }
     }
+    if (color) G.choices.hyperIntelligence[pid] = entry;
+    else delete G.choices.hyperIntelligence[pid];
     render();
+  }
+  function setHIDiscard(pid, oppId, traitName) {
+    const e = G.choices.hyperIntelligence && G.choices.hyperIntelligence[pid];
+    if (!e) return;
+    e.discards = e.discards || {};
+    e.discards[oppId] = traitName;
+    save();
   }
 
   // ---- navigation ----
@@ -607,7 +641,8 @@
         id: p.id, name: p.name, order: p.order,
         pile: p.pile.map((n) => JSON.parse(JSON.stringify(cardOf(n)))),
         handCount: p.handCount, handColors: p.handColors,
-        handDominants: p.handDominants, genePool: p.genePool,
+        handDominants: p.handDominants, handEffectCards: p.handEffectCards,
+        genePool: p.genePool,
       })),
       catastrophe: DB.cataByName[G.catastropheName],
       choices: G.choices,

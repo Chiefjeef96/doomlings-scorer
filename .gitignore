@@ -2,3 +2,6 @@
 .claude/
 .DS_Store
 Thumbs.db
+
+# rulebook / prompt (not part of the app; rulebook is copyrighted)
+Doomlings/

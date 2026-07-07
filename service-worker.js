@@ -9,7 +9,7 @@
  *
  * Bump CACHE_VERSION whenever you change app files so phones pick up the update.
  */
-const CACHE_VERSION = "doomlings-v1";
+const CACHE_VERSION = "doomlings-v2";
 const CORE = [
   "./",
   "index.html",

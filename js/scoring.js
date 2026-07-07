@@ -71,17 +71,18 @@
         log.push(`${p.name} — Cherished: returned ${cher} to hand.`);
       }
 
-      // Hyper-Intelligence: each opponent discards a trait of a chosen color.
+      // Hyper-Intelligence: choose ONE color; every opponent discards a trait of
+      // that color (at random — the walkthrough lets you name which one).
       const hi = choices.hyperIntelligence && choices.hyperIntelligence[p.id];
-      if (Array.isArray(hi)) {
-        for (const order of hi) {
-          const opp = byId[order.opponentId];
-          if (!opp) continue;
-          const removed = order.discardTraitName
-            ? removeTraitByName(opp.pile, order.discardTraitName)
-            : removeFirstOfColor(opp.pile, order.color);
+      if (hi && hi.color) {
+        for (const opp of players) {
+          if (opp.id === p.id) continue;
+          const pick = hi.discards && hi.discards[opp.id];
+          const removed = pick
+            ? removeTraitByName(opp.pile, pick)
+            : removeFirstOfColor(opp.pile, hi.color);
           if (removed) log.push(
-            `${p.name} — Hyper-Intelligence: ${opp.name} discarded ${removed.name} (${order.color}).`
+            `${p.name} — Hyper-Intelligence: ${opp.name} discarded ${removed.name} (${hi.color}).`
           );
         }
       }
@@ -110,13 +111,6 @@
 
     // ---- STEP 3: score each player ---------------------------------------
     const allPiles = players.map((p) => ({ playerId: p.id, pile: p.pile }));
-    // stamp boredom hand composition onto the owner for the evaluator
-    for (const p of players) {
-      if (choices.boredom && choices.boredom[p.id] != null) {
-        p.handColorless = choices.boredom[p.id];
-      }
-    }
-
     const results = {};
     for (const p of players) {
       const ctx = { pile: p.pile, allPiles, owner: p, players, aiTakeover };
@@ -145,19 +139,24 @@
       };
     }
 
-    // (c) opponent-facing bonuses (Viral): applied to OTHER players
+    // (c) chosen-color World's End traits (resolved in turn order above; scored here)
     for (const p of players) {
-      for (const c of p.pile) {
-        if (aiTakeover && c.color === "colorless" && !c.isDominant) continue;
-        for (const e of c.scoringEffects || []) {
-          if (e.kind === "opponentPerMostCommonColorTrait") {
-            for (const opp of players) {
-              if (opp.id === p.id) continue;
-              const pts = e.amount * E.mostCommonColorCount(opp.pile);
-              if (pts !== 0)
-                results[opp.id].bonusBreakdown.push({ source: `${c.name} (from ${p.name})`, amount: pts });
-            }
-          }
+      const hasTrait = (name) => p.pile.some((c) => c.name === name);
+
+      // Sentience: choose a color -> +1 for each of YOUR traits of that color.
+      const sColor = choices.sentience && choices.sentience[p.id];
+      if (sColor && hasTrait("SENTIENCE")) {
+        const pts = E.countColor(p.pile, sColor);
+        if (pts) results[p.id].bonusBreakdown.push({ source: `Sentience (${sColor})`, amount: pts });
+      }
+
+      // Viral: choose a color -> each OPPONENT gets -1 per trait of that color.
+      const vColor = choices.viral && choices.viral[p.id];
+      if (vColor && hasTrait("VIRAL")) {
+        for (const opp of players) {
+          if (opp.id === p.id) continue;
+          const pts = -1 * E.countColor(opp.pile, vColor);
+          if (pts) results[opp.id].bonusBreakdown.push({ source: `Viral ${vColor} (from ${p.name})`, amount: pts });
         }
       }
     }
@@ -209,11 +208,15 @@
         for (const p of players) push(p.id, we.amount * E.countColor(p.pile, we.color), we.text);
         break;
 
-      case "flatIfSameColorCount": // The Big One
+      case "perMissingColorPoints": { // The Big One: -2 per color missing from pile
+        const all = E.COLORS;
         for (const p of players) {
-          if (E.mostCommonColorCount(p.pile) >= we.threshold) push(p.id, we.amount, we.text);
+          const present = new Set(p.pile.map((c) => c.color));
+          const missing = all.filter((c) => !present.has(c)).length;
+          push(p.id, we.amount * missing, we.text);
         }
         break;
+      }
 
       case "pointsToFewestTraits": { // Overpopulation
         const min = Math.min(...players.map((p) => p.pile.length));

@@ -104,20 +104,6 @@
     // +A for each trait of the rarest color (needs >=2 colors)
     perRarestColorTrait: (e, ctx) => e.amount * rarestColorCount(ctx.pile),
 
-    // +A for each trait of the most-common color (self)
-    perMostCommonColorTrait: (e, ctx) => e.amount * mostCommonColorCount(ctx.pile),
-
-    // +A if <color> is (strictly, if noTies) the most common color
-    flatIfMostCommonColor: (e, ctx) => {
-      const m = colorCounts(ctx.pile);
-      const target = m[e.color] || 0;
-      if (target === 0) return 0;
-      const others = COLORS.filter((c) => c !== e.color).map((c) => m[c] || 0);
-      const maxOther = others.reduce((a, b) => Math.max(a, b), 0);
-      const ok = e.noTies ? target > maxOther : target >= maxOther;
-      return ok ? e.amount : 0;
-    },
-
     // +A for each <named> trait, scope "self" (this pile) or "all" (every pile)
     perNamedTrait: (e, ctx) => {
       if (e.scope === "all") {
@@ -134,33 +120,32 @@
       return has ? e.amount : 0;
     },
 
-    // Apex Predator: +flat if strictly most traits; +perFewerOpponent per opponent
-    // with strictly fewer traits.
-    apexPredator: (e, ctx) => {
+    // +A if you (strictly) have the most traits of anyone (Apex Predator)
+    flatIfMostTraits: (e, ctx) => {
       const mine = ctx.pile.length;
       const opp = ctx.players.filter((p) => p.id !== ctx.owner.id);
-      const sizes = opp.map((p) => p.pile.length);
-      let pts = 0;
-      if (sizes.every((s) => mine > s) && opp.length > 0) pts += e.flat;
-      pts += e.perFewerOpponent * sizes.filter((s) => s < mine).length;
-      return pts;
+      return opp.length && opp.every((p) => mine > p.pile.length) ? e.amount : 0;
     },
 
-    // Add your Gene Pool to your score (Altruistic)
-    addGenePool: (e, ctx) => ctx.owner.genePool || 0,
+    // +A for every N-of-a-color group across each OPPONENT's pile (Branches)
+    perOpponentColorPair: (e, ctx) =>
+      ctx.players
+        .filter((p) => p.id !== ctx.owner.id)
+        .reduce((sum, p) => sum + e.amount * Math.floor(countColor(p.pile, e.color) / e.n), 0),
+
+    // ---- "Value is equal to …" cards (contribute a computed number) ----
+    valueEqualsGenePool: (e, ctx) => ctx.owner.genePool || 0,
+    valueEqualsHandCount: (e, ctx) => ctx.owner.handCount || 0,
+    valueEqualsHandEffectCards: (e, ctx) => ctx.owner.handEffectCards || 0,
+    valueEqualsDistinctPileColors: (e, ctx) => Object.keys(colorCounts(ctx.pile)).length,
 
     // ---- hand-based ----
     perCardInHand: (e, ctx) => e.amount * (ctx.owner.handCount || 0),
-    perColorlessInHand: (e, ctx) => e.amount * (ctx.owner.handColorless || 0),
     perDominantInHand: (e, ctx) => e.amount * (ctx.owner.handDominants || 0),
     perColorInHand: (e, ctx) => {
       const v = e.amount * (ctx.owner.handColors || 0);
       return e.max != null ? Math.min(v, e.max) : v;
     },
-
-    // Opponent-facing effects are NOT scored here (returns 0 for owner);
-    // scoring.js applies them to opponents.
-    opponentPerMostCommonColorTrait: () => 0,
   };
 
   /** Evaluate one effect for the owner. Unknown kinds score 0 (and are logged). */

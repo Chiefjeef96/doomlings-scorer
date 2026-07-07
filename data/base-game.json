@@ -10,123 +10,389 @@
   ],
   "traits": [
     {
-      "name": "ECHOLOCATION",
-      "color": "blue",
-      "rarity": "Scarce",
-      "isDominant": true,
-      "isAction": false,
+      "name": "ADORABLE",
+      "color": "purple",
       "faceValue": 4,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
-      "effect": "Start of your turns: You may draw 1 card.",
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "IMMUNITY",
-      "color": "blue",
-      "rarity": "Endangered",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 4,
+      "name": "ALTRUISTIC",
+      "color": "colorless",
+      "faceValue": 0,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": true,
-      "effect": "+2 for each negative face value trait in your trait pile.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Value is equal to the size of your gene pool.",
       "scoringEffects": [
         {
-          "kind": "perNegativeTrait",
-          "amount": 2,
-          "text": "+2 for each negative face value trait in your trait pile."
+          "kind": "valueEqualsGenePool",
+          "text": "Value is equal to the size of your gene pool."
         }
       ]
     },
     {
-      "name": "TINY",
-      "color": "blue",
-      "rarity": "Legendary",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 17,
+      "name": "ANTLERS",
+      "color": "red",
+      "faceValue": 3,
       "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "APEX PREDATOR",
+      "color": "red",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": true,
-      "effect": "-1 for each trait in your trait pile. (Excluding dominants.)",
+      "isDominant": true,
+      "rarity": "Scarce",
+      "effect": "+4 if you have the most traits in your trait pile. (Ties don't count!)",
       "scoringEffects": [
         {
-          "kind": "perTraitInPile",
-          "amount": -1,
-          "excludeDominants": true,
-          "text": "-1 for each trait in your trait pile. (Excluding dominants.)"
+          "kind": "flatIfMostTraits",
+          "amount": 4,
+          "text": "+4 if you have the most traits in your trait pile. (Ties don't count!)"
         }
       ]
+    },
+    {
+      "name": "APPEALING",
+      "color": "green",
+      "faceValue": 3,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
     },
     {
       "name": "AUTOMIMICRY",
       "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": -1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "You may play this at any time to stop an action (a).",
+      "scoringEffects": []
+    },
+    {
+      "name": "BAD",
+      "color": "red",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Scarce",
+      "effect": "Opponents discard 2 cards from their hand at random.",
+      "scoringEffects": []
+    },
+    {
+      "name": "BARK",
+      "color": "green",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "BIG EARS",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
       "scoringEffects": []
     },
     {
       "name": "BLUBBER",
       "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 4,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "CHROMATOPHORES",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
+      "name": "BOREDOM",
+      "color": "colorless",
+      "faceValue": 0,
+      "atWorldsEnd": true,
       "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Value is equal to the number of cards in your hand with effects.",
+      "scoringEffects": [
+        {
+          "kind": "valueEqualsHandEffectCards",
+          "text": "Value is equal to the number of cards in your hand with effects."
+        }
+      ]
+    },
+    {
+      "name": "BRANCHES",
+      "color": "green",
       "faceValue": 0,
       "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "+1 for every pair of green traits in each opponent's trait pile.",
+      "scoringEffects": [
+        {
+          "kind": "perOpponentColorPair",
+          "color": "green",
+          "n": 2,
+          "amount": 1,
+          "text": "+1 for every pair of green traits in each opponent's trait pile."
+        }
+      ]
+    },
+    {
+      "name": "BRAVE",
+      "color": "red",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "+2 for each dominant card in your hand.",
+      "scoringEffects": [
+        {
+          "kind": "perDominantInHand",
+          "amount": 2,
+          "text": "+2 for each dominant card in your hand."
+        }
+      ]
+    },
+    {
+      "name": "BRUTE STRENGTH",
+      "color": "red",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "-1 Gene Pool",
+      "scoringEffects": []
+    },
+    {
+      "name": "CAMOUFLAGE",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Endangered",
+      "effect": "+1 Gene Pool +1 for each card in your hand.",
+      "scoringEffects": [
+        {
+          "kind": "perCardInHand",
+          "amount": 1,
+          "text": "+1 Gene Pool +1 for each card in your hand."
+        }
+      ]
+    },
+    {
+      "name": "CHERISHED",
+      "color": "colorless",
+      "faceValue": 2,
+      "atWorldsEnd": true,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "At World's End: You may return 1 trait from your trait pile to your hand.",
+      "scoringEffects": [],
+      "worldsEndChoice": {
+        "type": "cherished"
+      }
+    },
+    {
+      "name": "CHROMATOPHORES",
+      "color": "blue",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "You may play this at any time to stop an action (a).",
+      "scoringEffects": []
+    },
+    {
+      "name": "CLEVER",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Opponents reveal 1 card in their hand to all players. Steal 1 and play it immediately.",
       "scoringEffects": []
     },
     {
       "name": "COLD BLOOD",
       "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "Draw 3 cards. You may play 1 of them now.",
+      "scoringEffects": []
+    },
+    {
+      "name": "CONFUSION",
+      "color": "colorless",
+      "faceValue": -2,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "",
       "scoringEffects": []
     },
     {
       "name": "COSTLY SIGNALING",
       "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
       "faceValue": -2,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "Return an opponent's trait to their hand. Then play 1 more trait.",
+      "scoringEffects": []
+    },
+    {
+      "name": "DEEP ROOTS",
+      "color": "green",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "DELICIOUS",
+      "color": "colorless",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "To play, you must have at least 1 colorless trait in your trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "DENIAL",
+      "color": "colorless",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": true,
+      "rarity": "Scarce",
+      "effect": "Ignore the next catastrophe. Warning: You cannot ignore The Four Horsemen.",
+      "scoringEffects": []
+    },
+    {
+      "name": "DIRECTLY REGISTER",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Steal a face value (1) trait from an opponent's trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "DOTING",
+      "color": "colorless",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Give an opponent 1 card from your hand.",
+      "scoringEffects": []
+    },
+    {
+      "name": "DREAMER",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Scarce",
+      "effect": "+1 Gene Pool",
+      "scoringEffects": []
+    },
+    {
+      "name": "ECHOLOCATION",
+      "color": "blue",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": true,
+      "rarity": "Scarce",
+      "effect": "Until World's End: Draw 1 Card at the start of each of your turns.",
       "scoringEffects": []
     },
     {
       "name": "EGG CLUSTERS",
       "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": -1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "+1 for each blue trait in your trait pile. (Including this.)",
       "scoringEffects": [
         {
@@ -138,723 +404,423 @@
       ]
     },
     {
-      "name": "FLIGHT",
-      "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Swap hands with an opponent.",
-      "scoringEffects": []
-    },
-    {
-      "name": "IRIDESCENT SCALES",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Draw 4 cards.",
-      "scoringEffects": []
-    },
-    {
-      "name": "MIGRATORY",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
-    },
-    {
-      "name": "PAINTED SHELL",
-      "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Play an action (a) from your trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "PUFFY",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+3 for every 3 blue traits in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNColorTrait",
-          "color": "blue",
-          "n": 3,
-          "amount": 3,
-          "text": "+3 for every 3 blue traits in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "REGENERATIVE TISSUE",
-      "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "When this or any trait is discarded from your trait pile, draw 1 card. You may play it now. (Excluding dominants.) Ignore actions (a).",
-      "scoringEffects": []
-    },
-    {
-      "name": "SALIVA",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "+1 Gene Pool",
-      "scoringEffects": []
-    },
-    {
-      "name": "SCUTES",
-      "color": "blue",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 3,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Give an opponent 1 trait from your trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "SELECTIVE MEMORY",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Play 1 card from the discard pile. Play its action (a).",
-      "scoringEffects": []
-    },
-    {
-      "name": "SWEAT",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Discard 1 card from your hand.",
-      "scoringEffects": []
-    },
-    {
-      "name": "TENTACLES",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Swap 1 trait from your trait pile with an opponent's trait of the same color.",
-      "scoringEffects": []
-    },
-    {
-      "name": "HEROIC",
-      "color": "green",
-      "rarity": "Legendary",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 7,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "To play, you must have 3 or more green traits in your trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "PACK BEHAVIOR",
-      "color": "green",
-      "rarity": "Scarce",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 3,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for every 2 traits of the same color in your trait pile.",
-      "scoringEffects": [
-        {
-          "kind": "perSameColorGroup",
-          "n": 2,
-          "amount": 1,
-          "text": "+1 for every 2 traits of the same color in your trait pile."
-        }
-      ]
-    },
-    {
-      "name": "SYMBIOSIS",
-      "color": "green",
-      "rarity": "Endangered",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+2 for each trait of the rarest color in your trait pile. (Must have 2 or more colors. If there's a tie, pick 1.)",
-      "scoringEffects": [
-        {
-          "kind": "perRarestColorTrait",
-          "amount": 2,
-          "requiresMultiColor": true,
-          "text": "+2 for each trait of the rarest color in your trait pile. (Must have 2 or more colors. If there's a tie, pick 1.)"
-        }
-      ]
-    },
-    {
-      "name": "APPEALING",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 3,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
-    },
-    {
-      "name": "BARK",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
-    },
-    {
-      "name": "BRANCHES",
-      "color": "green",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+4 if green is the most common color in your trait pile. (No ties!)",
-      "scoringEffects": [
-        {
-          "kind": "flatIfMostCommonColor",
-          "color": "green",
-          "amount": 4,
-          "noTies": true,
-          "text": "+4 if green is the most common color in your trait pile. (No ties!)"
-        }
-      ]
-    },
-    {
-      "name": "DEEP ROOTS",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+3 for every 3 green traits in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNColorTrait",
-          "color": "green",
-          "n": 3,
-          "amount": 3,
-          "text": "+3 for every 3 green traits in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "FECUNDITY",
-      "color": "green",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "+1 Gene Pool",
-      "scoringEffects": []
-    },
-    {
-      "name": "LEAVES",
-      "color": "green",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "You may play this when you play a green trait.",
-      "scoringEffects": []
-    },
-    {
-      "name": "LOW-HANGING",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
-    },
-    {
-      "name": "OVERGROWTH",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": -1,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each green trait in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perColorTrait",
-          "color": "green",
-          "amount": 1,
-          "text": "+1 for each green trait in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "PHOTOSYNTHESIS",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Draw 3 cards. You may play 1 of the them if it's green.",
-      "scoringEffects": []
-    },
-    {
-      "name": "POLLINATION",
-      "color": "green",
-      "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each face value (1) trait in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perFaceValueTrait",
-          "value": 1,
-          "amount": 1,
-          "text": "+1 for each face value (1) trait in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "PROPAGATION",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Play 1 more trait.",
-      "scoringEffects": []
-    },
-    {
-      "name": "SELF-REPLICATING",
-      "color": "green",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Play 1 card from the discard pile. Ignore its action (a). When you play another green trait from your hand, you may return this to your hand.",
-      "scoringEffects": []
-    },
-    {
-      "name": "SWARM (2)",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Swarm in all trait piles. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "swarm",
-          "scope": "all",
-          "amount": 1,
-          "text": "+1 for each Swarm in all trait piles. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "SWARM (3)",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Swarm in all trait piles. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "swarm",
-          "scope": "all",
-          "amount": 1,
-          "text": "+1 for each Swarm in all trait piles. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "SWARM (4)",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Swarm in all trait piles. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "swarm",
-          "scope": "all",
-          "amount": 1,
-          "text": "+1 for each Swarm in all trait piles. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "SWARM (5)",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Swarm in all trait piles. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "swarm",
-          "scope": "all",
-          "amount": 1,
-          "text": "+1 for each Swarm in all trait piles. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "SWARM (6)",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Swarm in all trait piles. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "swarm",
-          "scope": "all",
-          "amount": 1,
-          "text": "+1 for each Swarm in all trait piles. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "TINY LITTLE MELONS",
-      "color": "green",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Steal 1 green trait from an opponent's trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "TRUNK",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Play the top card of the discard pile. Play its action (a).",
-      "scoringEffects": []
-    },
-    {
-      "name": "WILTED",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "You may discard up to 3 cards from your hand.",
-      "scoringEffects": []
-    },
-    {
-      "name": "DENIAL",
+      "name": "ELOQUENCE",
       "color": "colorless",
-      "rarity": "Scarce",
-      "isDominant": true,
+      "faceValue": 1,
+      "atWorldsEnd": true,
       "isAction": false,
-      "faceValue": 5,
-      "atWorldsEnd": false,
       "dropOfLife": false,
-      "effect": "You may ignore the next catastrophe. Warning: You cannot ignore The Four Horsemen.",
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "At World's End: You may play 1 more trait. Ignore its action (a).",
+      "scoringEffects": []
+    },
+    {
+      "name": "ENDURANCE",
+      "color": "red",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "If this is discarded from your trait pile, return it to your trait pile.",
       "scoringEffects": []
     },
     {
       "name": "FAITH",
       "color": "colorless",
-      "rarity": "Endangered",
-      "isDominant": true,
-      "isAction": false,
       "faceValue": 4,
       "atWorldsEnd": true,
+      "isAction": false,
       "dropOfLife": false,
-      "effect": "At World's End: You may change one color to a different color on traits in your trait pile.",
+      "isDominant": true,
+      "rarity": "Endangered",
+      "effect": "At World's End: You may change all of your traits of 1 color to 1 alternative color.",
       "scoringEffects": [],
       "worldsEndChoice": {
         "type": "faith"
       }
     },
     {
-      "name": "OPTIMISTIC NIHILISM",
-      "color": "colorless",
-      "rarity": "Endangered",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 6,
+      "name": "FANGS",
+      "color": "red",
+      "faceValue": 1,
       "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "To play, all players must have at least 3 traits in their trait pile. All players discard 1 trait from their trait pile. (Including you.)",
-      "scoringEffects": []
-    },
-    {
-      "name": "ALTRUISTIC",
-      "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
       "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
       "dropOfLife": true,
-      "effect": "Add your Gene Pool to your score.",
-      "scoringEffects": [
-        {
-          "kind": "addGenePool",
-          "text": "Add your Gene Pool to your score."
-        }
-      ]
-    },
-    {
-      "name": "BOREDOM",
-      "color": "colorless",
+      "isDominant": false,
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": true,
-      "dropOfLife": true,
-      "effect": "At World's End: Draw 2 cards. +2 for each colorless card in your hand.",
-      "scoringEffects": [
-        {
-          "kind": "perColorlessInHand",
-          "amount": 2,
-          "text": "At World's End: Draw 2 cards. +2 for each colorless card in your hand."
-        }
-      ],
-      "worldsEndChoice": {
-        "type": "boredom"
-      }
-    },
-    {
-      "name": "CHERISHED",
-      "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": true,
-      "dropOfLife": false,
-      "effect": "At World's End: You may return 1 trait from your trait pile to your hand.",
-      "scoringEffects": [],
-      "worldsEndChoice": {
-        "type": "cherished"
-      }
-    },
-    {
-      "name": "CONFUSION",
-      "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": -2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
       "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "DELICIOUS",
+      "name": "FEAR",
       "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 4,
+      "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
-      "effect": "To play, you must have at least 1 colorless trait in your trait pile.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "DOTING",
-      "color": "colorless",
-      "rarity": "Common",
+      "name": "FECUNDITY",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
       "isDominant": false,
-      "isAction": true,
+      "rarity": "Unusual",
+      "effect": "+1 Gene Pool",
+      "scoringEffects": []
+    },
+    {
+      "name": "FINE MOTOR SKILLS",
+      "color": "purple",
       "faceValue": 2,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
-      "effect": "Give an opponent 1 card from your hand.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "ELOQUENCE",
-      "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
+      "name": "FIRE SKIN",
+      "color": "red",
+      "faceValue": 3,
+      "atWorldsEnd": false,
       "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": true,
       "dropOfLife": false,
-      "effect": "At World's End: You may play 1 more trait. Ignore its action (a).",
-      "scoringEffects": [],
-      "worldsEndChoice": {
-        "type": "eloquence"
-      }
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "",
+      "scoringEffects": []
     },
     {
       "name": "FLATULENCE",
       "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 3,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "FORTUNATE",
-      "color": "colorless",
-      "rarity": "Common",
+      "name": "FLIGHT",
+      "color": "blue",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
       "isDominant": false,
-      "isAction": false,
+      "rarity": "Unusual",
+      "effect": "Swap hands with an opponent.",
+      "scoringEffects": []
+    },
+    {
+      "name": "FORTUNATE",
+      "color": "green",
       "faceValue": 0,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": true,
-      "effect": "+1 for each card in your hand.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Value is equal to the number of cards in your hand.",
       "scoringEffects": [
         {
-          "kind": "perCardInHand",
-          "amount": 1,
-          "text": "+1 for each card in your hand."
+          "kind": "valueEqualsHandCount",
+          "text": "Value is equal to the number of cards in your hand."
         }
       ]
     },
     {
-      "name": "INTROSPECTIVE",
-      "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
+      "name": "FUSED",
+      "color": "red",
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "GILLS",
+      "color": "blue",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "GRATITUDE",
+      "color": "colorless",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Value is equal to the number of different colors in your trait pile.",
+      "scoringEffects": [
+        {
+          "kind": "valueEqualsDistinctPileColors",
+          "text": "Value is equal to the number of different colors in your trait pile."
+        }
+      ]
+    },
+    {
+      "name": "HEAT VISION",
+      "color": "red",
+      "faceValue": -1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "+1 for each red trait in your trait pile. (Including this.)",
+      "scoringEffects": [
+        {
+          "kind": "perColorTrait",
+          "color": "red",
+          "amount": 1,
+          "text": "+1 for each red trait in your trait pile. (Including this.)"
+        }
+      ]
+    },
+    {
+      "name": "HEROIC",
+      "color": "green",
+      "faceValue": 7,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": true,
+      "rarity": "Legendary",
+      "effect": "To play, you must have 3 or more green traits in your trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "HOT TEMPER",
+      "color": "red",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Endangered",
+      "effect": "Discard 2 cards from your hand.",
+      "scoringEffects": []
+    },
+    {
+      "name": "HYPER-INTELLIGENCE",
+      "color": "red",
+      "faceValue": 4,
+      "atWorldsEnd": true,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": true,
+      "rarity": "Scarce",
+      "effect": "At World's End: Choose a color. Opponents discard 1 trait of that color from their trait pile at random.",
+      "scoringEffects": [],
+      "worldsEndChoice": {
+        "type": "hyperIntelligence"
+      }
+    },
+    {
+      "name": "IMMUNITY",
+      "color": "blue",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Endangered",
+      "effect": "+2 for each negative face value trait in your trait pile.",
+      "scoringEffects": [
+        {
+          "kind": "perNegativeTrait",
+          "amount": 2,
+          "text": "+2 for each negative face value trait in your trait pile."
+        }
+      ]
+    },
+    {
+      "name": "IMPATIENCE",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Steal 2 random cards from an opponent's hand.",
+      "scoringEffects": []
+    },
+    {
+      "name": "INTROSPECTIVE",
+      "color": "colorless",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Draw 4 cards.",
+      "scoringEffects": []
+    },
+    {
+      "name": "INVENTIVE",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Play an action (a) from an opponent's trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "IRIDESCENT SCALES",
+      "color": "blue",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "Draw 3 cards.",
+      "scoringEffects": []
+    },
+    {
+      "name": "IRRITABLE",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "All opponents discard 1 red trait from their trait pile.",
       "scoringEffects": []
     },
     {
       "name": "JUST",
       "color": "colorless",
-      "rarity": "Endangered",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 2,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Endangered",
       "effect": "+1 Gene Pool",
       "scoringEffects": []
     },
     {
+      "name": "KIDNEY",
+      "color": "red",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
+      "scoringEffects": [
+        {
+          "kind": "perNamedTrait",
+          "name": "kidney",
+          "scope": "self",
+          "amount": 1,
+          "text": "+1 for each Kidney in your trait pile. (Including this.)"
+        }
+      ]
+    },
+    {
       "name": "LATE",
       "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "You may play this after you stabilize.",
+      "scoringEffects": []
+    },
+    {
+      "name": "LEAVES",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "LOW-HANGING",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "MEMORY",
+      "color": "purple",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "You may discard your hand and stabilize.",
+      "scoringEffects": []
+    },
+    {
+      "name": "MIGRATORY",
+      "color": "blue",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
       "scoringEffects": []
     },
     {
       "name": "MINDFUL",
       "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 0,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "+1 for each colorless trait in your trait pile. (Including this.)",
       "scoringEffects": [
         {
@@ -868,36 +834,201 @@
     {
       "name": "MITOCHONDRION",
       "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "+1 Gene Pool",
       "scoringEffects": []
     },
     {
       "name": "MORALITY",
       "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 6,
+      "faceValue": 5,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "To play, you must give 1 positive face value trait from your trait pile to an opponent.",
       "scoringEffects": []
     },
     {
+      "name": "NOCTURNAL",
+      "color": "purple",
+      "faceValue": 3,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
+    },
+    {
+      "name": "NOSY",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Look at 2 random cards from an opponent's hand. Steal 1, and play it immediately.",
+      "scoringEffects": []
+    },
+    {
+      "name": "OPTIMISTIC NIHILISM",
+      "color": "colorless",
+      "faceValue": 4,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": true,
+      "rarity": "Endangered",
+      "effect": "Bring about the next catastrophe. Skip all turns. Ignore all age effects along the way. Do not stabilize.",
+      "scoringEffects": []
+    },
+    {
+      "name": "OVERGROWTH",
+      "color": "green",
+      "faceValue": -1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "+1 for each green trait in your trait pile. (Including this.)",
+      "scoringEffects": [
+        {
+          "kind": "perColorTrait",
+          "color": "green",
+          "amount": 1,
+          "text": "+1 for each green trait in your trait pile. (Including this.)"
+        }
+      ]
+    },
+    {
+      "name": "PACK BEHAVIOR",
+      "color": "green",
+      "faceValue": 3,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Scarce",
+      "effect": "+1 for every color pair in your trait pile",
+      "scoringEffects": [
+        {
+          "kind": "perSameColorGroup",
+          "n": 2,
+          "amount": 1,
+          "text": "+1 for every color pair in your trait pile"
+        }
+      ]
+    },
+    {
+      "name": "PAINTED SHELL",
+      "color": "blue",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Play an action (a) from your trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "PAPPUS",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "You may return an opponent's trait to their hand.",
+      "scoringEffects": []
+    },
+    {
+      "name": "PARASITIC",
+      "color": "purple",
+      "faceValue": -2,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "You may play this when an opponent plays a trait. Stop its action (a). Then steal it.",
+      "scoringEffects": []
+    },
+    {
+      "name": "PERSUASIVE",
+      "color": "purple",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Choose a color. All players discard all cards of that color from their hand. (Including you!)",
+      "scoringEffects": []
+    },
+    {
+      "name": "PHOTOSYNTHESIS",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Draw 2 cards. If either are green, play 1 immediately (unless restricted)",
+      "scoringEffects": []
+    },
+    {
+      "name": "POISONOUS",
+      "color": "purple",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Swap Poisonous with a trait from an opponent's trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "POLLINATION",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Scarce",
+      "effect": "+1 for each face value (1) trait in your trait pile. (Including this.)",
+      "scoringEffects": [
+        {
+          "kind": "perFaceValueTrait",
+          "value": 1,
+          "amount": 1,
+          "text": "+1 for each face value (1) trait in your trait pile. (Including this.)"
+        }
+      ]
+    },
+    {
       "name": "PREPPER",
       "color": "colorless",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 2,
       "atWorldsEnd": true,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "At World's End: Choose 1 of the 3 catastrophes for all players to end on.",
       "scoringEffects": [],
       "worldsEndChoice": {
@@ -905,296 +1036,240 @@
       }
     },
     {
-      "name": "SAUDADE",
-      "color": "colorless",
-      "rarity": "Legendary",
-      "isDominant": false,
-      "isAction": false,
+      "name": "PROPAGATION",
+      "color": "green",
       "faceValue": 1,
       "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each color in your hand. (Max +4)",
-      "scoringEffects": [
-        {
-          "kind": "perColorInHand",
-          "amount": 1,
-          "max": 4,
-          "text": "+1 for each color in your hand. (Max +4)"
-        }
-      ]
-    },
-    {
-      "name": "SELF-AWARENESS",
-      "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": -1,
-      "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
-      "effect": "You may play this at any time into any trait pile.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Play 1 more trait.",
       "scoringEffects": []
     },
     {
-      "name": "THE THIRD EYE",
-      "color": "colorless",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
+      "name": "PUFFY",
+      "color": "blue",
       "faceValue": 0,
       "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Peek at the next age. Then play 1 more trait.",
-      "scoringEffects": []
-    },
-    {
-      "name": "CAMOUFLAGE",
-      "color": "purple",
-      "rarity": "Endangered",
-      "isDominant": true,
       "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
       "dropOfLife": true,
-      "effect": "+1 Gene Pool +1 for each card in your hand.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "+3 for every 3 blue traits in your trait pile. (Including this.)",
       "scoringEffects": [
         {
-          "kind": "perCardInHand",
-          "amount": 1,
-          "text": "+1 Gene Pool +1 for each card in your hand."
+          "kind": "perNColorTrait",
+          "color": "blue",
+          "n": 3,
+          "amount": 3,
+          "text": "+3 for every 3 blue traits in your trait pile. (Including this.)"
         }
       ]
     },
     {
-      "name": "VAMPIRISM",
-      "color": "purple",
-      "rarity": "Legendary",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 3,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Steal 1 trait from an opponent's trait pile. Play its action (a).",
-      "scoringEffects": []
-    },
-    {
-      "name": "VIRAL",
-      "color": "purple",
-      "rarity": "Scarce",
-      "isDominant": true,
-      "isAction": false,
+      "name": "QUICK",
+      "color": "red",
       "faceValue": 2,
       "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "Opponents receive -1 for each trait of the most common color in their trait pile. (If there's a tie, pick 1!)",
-      "scoringEffects": [
-        {
-          "kind": "opponentPerMostCommonColorTrait",
-          "amount": -1,
-          "text": "Opponents receive -1 for each trait of the most common color in their trait pile. (If there's a tie, pick 1!)"
-        }
-      ]
-    },
-    {
-      "name": "ADORABLE",
-      "color": "purple",
-      "rarity": "Unusual",
-      "isDominant": false,
       "isAction": false,
-      "faceValue": 4,
-      "atWorldsEnd": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "",
       "scoringEffects": []
     },
     {
-      "name": "CLEVER",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
+      "name": "RANDOM FERTILIZATION",
+      "color": "green",
+      "faceValue": 0,
       "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Opponents reveal 1 card in their hand to all players. Steal 1. You may play it now.",
-      "scoringEffects": []
-    },
-    {
-      "name": "DIRECTLY REGISTER",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Steal a face value (1) trait from an opponent's trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "DREAMER",
-      "color": "purple",
-      "rarity": "Scarce",
-      "isDominant": false,
       "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Value is equal to the size of your gene pool.",
+      "scoringEffects": [
+        {
+          "kind": "valueEqualsGenePool",
+          "text": "Value is equal to the size of your gene pool."
+        }
+      ]
+    },
+    {
+      "name": "RECKLESS",
+      "color": "red",
+      "faceValue": 3,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "You and an opponent discard 1 trait from each other's trait pile. (Excluding this one).",
+      "scoringEffects": []
+    },
+    {
+      "name": "REGENERATIVE TISSUE",
+      "color": "blue",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Anytime you discard a trait from your trait pile, (including this one), draw 1. Play it immediately. (Unless Restricted.) Ignore actions.",
+      "scoringEffects": []
+    },
+    {
+      "name": "RETRACTABLE CLAWS",
+      "color": "red",
+      "faceValue": 5,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "To play, you must discard 1 red trait from your trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "SALIVA",
+      "color": "blue",
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "+1 Gene Pool",
       "scoringEffects": []
     },
     {
-      "name": "FINE MOTOR SKILLS",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
-    },
-    {
-      "name": "INVENTIVE",
-      "color": "purple",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
+      "name": "SAUDADE",
+      "color": "colorless",
       "faceValue": 1,
       "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Play an action (a) from an opponent's trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "IRRITABLE",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "All opponents discard 1 red trait from their trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "NOCTURNAL",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
       "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
       "dropOfLife": true,
-      "effect": "+3 for every 3 purple traits in your trait pile. (Including this.)",
+      "isDominant": false,
+      "rarity": "Legendary",
+      "effect": "+1 for each different color in your hand.",
       "scoringEffects": [
         {
-          "kind": "perNColorTrait",
-          "color": "purple",
-          "n": 3,
-          "amount": 3,
-          "text": "+3 for every 3 purple traits in your trait pile. (Including this.)"
+          "kind": "perColorInHand",
+          "amount": 1,
+          "text": "+1 for each different color in your hand."
         }
       ]
     },
     {
-      "name": "NOSY",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
+      "name": "SCUTES",
+      "color": "blue",
+      "faceValue": 3,
       "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Steal 2 random cards from an opponent's hand. You may play 1 of them now.",
-      "scoringEffects": []
-    },
-    {
-      "name": "PAPPUS",
-      "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
       "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
       "dropOfLife": false,
-      "effect": "You may return an opponent's trait to their hand.",
-      "scoringEffects": []
-    },
-    {
-      "name": "PARASITIC",
-      "color": "purple",
+      "isDominant": false,
       "rarity": "Unusual",
+      "effect": "Give an opponent 1 trait from your trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "SELECTIVE MEMORY",
+      "color": "blue",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
       "isDominant": false,
+      "rarity": "Common",
+      "effect": "Play 1 card from the discard pile. Play its action (a).",
+      "scoringEffects": []
+    },
+    {
+      "name": "SELF-AWARENESS",
+      "color": "colorless",
+      "faceValue": -1,
+      "atWorldsEnd": false,
       "isAction": false,
-      "faceValue": -2,
-      "atWorldsEnd": false,
       "dropOfLife": false,
-      "effect": "You may play this when an opponent plays a trait. Stop its action (a). Then steal it.",
-      "scoringEffects": []
-    },
-    {
-      "name": "PERSUASIVE",
-      "color": "purple",
+      "isDominant": false,
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Choose a color. All players discard all cards of that color from their hand. (Including you!)",
-      "scoringEffects": []
-    },
-    {
-      "name": "POISONOUS",
-      "color": "purple",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Swap Poisonous with a trait from an opponent's trait pile.",
+      "effect": "You may play this at any time into any trait pile.",
       "scoringEffects": []
     },
     {
       "name": "SELFISH",
       "color": "purple",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "Steal 1 red trait from an opponent's trait pile.",
       "scoringEffects": []
     },
     {
-      "name": "SNEAKY",
-      "color": "purple",
-      "rarity": "Common",
+      "name": "SELF-REPLICATING",
+      "color": "green",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
       "isDominant": false,
-      "isAction": false,
+      "rarity": "Unusual",
+      "effect": "Play 1 card from the discard pile. Ignore its action (a). When you play another green trait from your hand, you may return this to your hand.",
+      "scoringEffects": []
+    },
+    {
+      "name": "SENTIENCE",
+      "color": "red",
       "faceValue": 2,
       "atWorldsEnd": true,
-      "dropOfLife": false,
-      "effect": "At World's End: You may play this.",
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Endangered",
+      "effect": "At World's End: Choose a color. +1 for all traits of that color in your trait pile.",
       "scoringEffects": [],
       "worldsEndChoice": {
-        "type": "sneaky"
+        "type": "sentience"
       }
+    },
+    {
+      "name": "SNEAKY",
+      "color": "purple",
+      "faceValue": 2,
+      "atWorldsEnd": true,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "At World's End: You may play this.",
+      "scoringEffects": []
+    },
+    {
+      "name": "SPINY",
+      "color": "blue",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
+      "scoringEffects": []
     },
     {
       "name": "STICKY SECRETIONS",
       "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": -1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "+1 for each purple trait in your trait pile. (Including this.)",
       "scoringEffects": [
         {
@@ -1206,450 +1281,267 @@
       ]
     },
     {
-      "name": "SUPER SPREADER",
-      "color": "purple",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
+      "name": "STONE SKIN",
+      "color": "red",
       "faceValue": 2,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
-      "effect": "Choose a color. All players pass all cards of that color from their hand to the player on their left.",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "",
       "scoringEffects": []
+    },
+    {
+      "name": "SUPER SPREADER",
+      "color": "purple",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "All players receive: -1 Gene Pool. (Including yourself.)",
+      "scoringEffects": []
+    },
+    {
+      "name": "SWARM",
+      "color": "green",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "+1 for each Swarm in all trait piles. (Including this.)",
+      "scoringEffects": [
+        {
+          "kind": "perNamedTrait",
+          "name": "swarm",
+          "scope": "all",
+          "amount": 1,
+          "text": "+1 for each Swarm in all trait piles. (Including this.)"
+        }
+      ]
+    },
+    {
+      "name": "SWEAT",
+      "color": "blue",
+      "faceValue": 2,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Discard 1 card from your hand.",
+      "scoringEffects": []
+    },
+    {
+      "name": "SYMBIOSIS",
+      "color": "green",
+      "faceValue": 3,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Endangered",
+      "effect": "+2 for each trait of the lowest color count in your trait pile. (Must have 2 or more colors. If there's a tie, pick 1.)",
+      "scoringEffects": [
+        {
+          "kind": "perRarestColorTrait",
+          "amount": 2,
+          "requiresMultiColor": true,
+          "text": "+2 for each trait of the lowest color count in your trait pile. (Must have 2 or more colors. If there's a tie, pick 1.)"
+        }
+      ]
     },
     {
       "name": "TEETH",
       "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "+1 Gene Pool",
       "scoringEffects": []
     },
     {
       "name": "TELEKINETIC",
       "color": "purple",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "Swap 1 trait from your trait pile with an opponent's trait of a different color.",
+      "scoringEffects": []
+    },
+    {
+      "name": "TENTACLES",
+      "color": "blue",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Swap 1 trait from your trait pile with an opponent's trait of the same color.",
+      "scoringEffects": []
+    },
+    {
+      "name": "TERRITORIAL",
+      "color": "red",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "All opponents discard 1 red trait from their trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "THE THIRD EYE",
+      "color": "colorless",
+      "faceValue": 0,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Peek at the next age. Then play 1 more trait.",
+      "scoringEffects": []
+    },
+    {
+      "name": "TINY",
+      "color": "blue",
+      "faceValue": 17,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Legendary",
+      "effect": "-1 for each trait in your trait pile. (Excluding dominants.)",
+      "scoringEffects": [
+        {
+          "kind": "perTraitInPile",
+          "amount": -1,
+          "excludeDominants": true,
+          "text": "-1 for each trait in your trait pile. (Excluding dominants.)"
+        }
+      ]
+    },
+    {
+      "name": "TINY LITTLE MELONS",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
+      "effect": "Steal 1 green trait from an opponent's trait pile.",
+      "scoringEffects": []
+    },
+    {
+      "name": "TRUNK",
+      "color": "green",
+      "faceValue": 1,
+      "atWorldsEnd": false,
+      "isAction": true,
+      "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "Play the top card of the discard pile. Ignore its action (a).",
+      "scoringEffects": []
+    },
+    {
+      "name": "VAMPIRISM",
+      "color": "purple",
+      "faceValue": 3,
+      "atWorldsEnd": false,
+      "isAction": false,
+      "dropOfLife": false,
+      "isDominant": true,
+      "rarity": "Legendary",
+      "effect": "Steal 1 trait from an opponent's trait pile. Play its action (a).",
       "scoringEffects": []
     },
     {
       "name": "VENOMOUS",
       "color": "purple",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": true,
       "faceValue": -2,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "Play 1 more trait. Then move Venomous to an opponent's trait pile.",
       "scoringEffects": []
     },
     {
-      "name": "APEX PREDATOR",
-      "color": "red",
-      "rarity": "Scarce",
-      "isDominant": true,
-      "isAction": false,
+      "name": "VIRAL",
+      "color": "purple",
       "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+2 if you have the most traits in your trait pile. +2 for each opponent with fewer traits than you. (Ties don't count!)",
-      "scoringEffects": [
-        {
-          "kind": "apexPredator",
-          "flat": 2,
-          "perFewerOpponent": 2,
-          "text": "+2 if you have the most traits in your trait pile. +2 for each opponent with fewer traits than you. (Ties don't count!)"
-        }
-      ]
-    },
-    {
-      "name": "HYPER-INTELLIGENCE",
-      "color": "red",
-      "rarity": "Scarce",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 4,
       "atWorldsEnd": true,
-      "dropOfLife": false,
-      "effect": "At World's End: Choose a color for each opponent. Opponents randomly discard 1 trait of that color from their trait pile.",
+      "isAction": false,
+      "dropOfLife": true,
+      "isDominant": true,
+      "rarity": "Scarce",
+      "effect": "At World's End: Choose a color. Opponents receive -1 for each trait of that color in their trait pile.",
       "scoringEffects": [],
       "worldsEndChoice": {
-        "type": "hyperIntelligence"
+        "type": "viral"
       }
-    },
-    {
-      "name": "SENTIENCE",
-      "color": "red",
-      "rarity": "Endangered",
-      "isDominant": true,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each trait of the most common color in your trait pile. (If there's a tie, pick 1!)",
-      "scoringEffects": [
-        {
-          "kind": "perMostCommonColorTrait",
-          "amount": 1,
-          "text": "+1 for each trait of the most common color in your trait pile. (If there's a tie, pick 1!)"
-        }
-      ]
-    },
-    {
-      "name": "BAD",
-      "color": "red",
-      "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Opponents discard 2 cards from their hand at random.",
-      "scoringEffects": []
-    },
-    {
-      "name": "BRAVE",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+2 for each dominant card in your hand.",
-      "scoringEffects": [
-        {
-          "kind": "perDominantInHand",
-          "amount": 2,
-          "text": "+2 for each dominant card in your hand."
-        }
-      ]
-    },
-    {
-      "name": "BRUTE STRENGTH",
-      "color": "red",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 4,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "-1 Gene Pool",
-      "scoringEffects": []
-    },
-    {
-      "name": "ENDURANCE",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "If this is discarded from your trait pile, return it to your trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "FANGS",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 1,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+3 if Vampirism is in your trait pile.",
-      "scoringEffects": [
-        {
-          "kind": "flatIfTraitPresent",
-          "name": "vampirism",
-          "amount": 3,
-          "text": "+3 if Vampirism is in your trait pile."
-        }
-      ]
-    },
-    {
-      "name": "FIRE SKIN",
-      "color": "red",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+3 for every 3 red traits in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNColorTrait",
-          "color": "red",
-          "n": 3,
-          "amount": 3,
-          "text": "+3 for every 3 red traits in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "HEAT VISION",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": -1,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each red trait in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perColorTrait",
-          "color": "red",
-          "amount": 1,
-          "text": "+1 for each red trait in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "HOT TEMPER",
-      "color": "red",
-      "rarity": "Endangered",
-      "isDominant": false,
-      "isAction": true,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "Discard 2 cards from your hand.",
-      "scoringEffects": []
-    },
-    {
-      "name": "KIDNEY (1)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "KIDNEY (2)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "KIDNEY (3)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "KIDNEY (4)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "KIDNEY (6)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "KIDNEY (7)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "KIDNEY (8)",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 0,
-      "atWorldsEnd": false,
-      "dropOfLife": true,
-      "effect": "+1 for each Kidney in your trait pile. (Including this.)",
-      "scoringEffects": [
-        {
-          "kind": "perNamedTrait",
-          "name": "kidney",
-          "scope": "self",
-          "amount": 1,
-          "text": "+1 for each Kidney in your trait pile. (Including this.)"
-        }
-      ]
-    },
-    {
-      "name": "QUICK",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
-    },
-    {
-      "name": "RETRACTABLE CLAWS",
-      "color": "red",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 5,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "To play, you must discard 1 red trait from your trait pile.",
-      "scoringEffects": []
-    },
-    {
-      "name": "STONE SKIN",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": 2,
-      "atWorldsEnd": false,
-      "dropOfLife": false,
-      "effect": "",
-      "scoringEffects": []
     },
     {
       "name": "VORACIOUS",
       "color": "red",
-      "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": true,
       "faceValue": 2,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Unusual",
       "effect": "Play 1 more trait. Then discard 1 trait from your trait pile.",
       "scoringEffects": []
     },
     {
       "name": "WARM BLOOD",
       "color": "red",
-      "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
       "faceValue": -1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Scarce",
       "effect": "+2 Gene Pool",
       "scoringEffects": []
     },
     {
-      "name": "BIG EARS",
-      "color": "blue",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
+      "name": "WILTED",
+      "color": "green",
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": true,
       "dropOfLife": false,
-      "effect": "",
+      "isDominant": false,
+      "rarity": "Common",
+      "effect": "You may discard up to 3 cards from your hand.",
       "scoringEffects": []
     },
     {
-      "name": "FUSED",
-      "color": "red",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
+      "name": "WILTED",
+      "color": "green",
       "faceValue": 1,
       "atWorldsEnd": false,
+      "isAction": false,
       "dropOfLife": false,
+      "isDominant": false,
+      "rarity": "Common",
       "effect": "",
       "scoringEffects": []
     }
@@ -1657,266 +1549,175 @@
   "ages": [
     {
       "name": "AGE OF EXPLORATION",
-      "color": "red",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "You may discard 1 card from your hand to draw 2 cards."
     },
     {
       "name": "AGE OF NIETZSCHE",
-      "color": "purple",
       "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "You may discard your hand and draw 3 cards."
+      "effect": "Instead of stabilizing this turn, you may discard your hand and draw 3 cards."
     },
     {
       "name": "AGE OF PEACE",
-      "color": "blue",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Ignore all actions (a)."
     },
     {
       "name": "AGE OF REASON",
-      "color": "red",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "Draw 2 cards. Keep 1, discard the other."
+      "effect": "Draw 3 cards. Keep 1, discard the other 2."
     },
     {
       "name": "AGE OF WONDER",
-      "color": "colorless",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "When stabilizing, stabilize to 4."
+      "effect": "You must end your turn with 4 cards in your hand."
     },
     {
       "name": "ALIEN TERRAFORM",
-      "color": "colorless",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "You may discard any dominant cards from your hand and stabilize."
+      "effect": "You may discard any dominant cards from your hand and stabilize. If you do, then stablize immediately."
     },
     {
       "name": "ARID LANDS",
-      "color": "red",
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Cannot play blue traits."
     },
     {
       "name": "AWAKENING",
-      "color": "colorless",
       "rarity": "Endangered",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "Preview the next age to all players."
+      "effect": "Preview the next age before you take your turn."
     },
     {
       "name": "BIRTH OF A HERO",
-      "color": "green",
       "rarity": "Legendary",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "If you hold Heroic, play it now without restriction."
     },
     {
       "name": "COASTAL FORMATIONS",
-      "color": "green",
       "rarity": "Endangered",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "You may stabilize now to 1 over your Gene Pool."
+      "effect": "Draw 1 card after you stabilize."
     },
     {
       "name": "COMET SHOWERS",
-      "color": "red",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Discard 1 card from your hand at random."
     },
     {
       "name": "ECLIPSE",
-      "color": "purple",
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Cannot play red traits."
     },
     {
       "name": "ENLIGHTENMENT",
-      "color": "purple",
       "rarity": "Legendary",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "You may discard up to 2 cards from your hand."
+      "effect": "You may discard up to 2 cards from your hand before you stabilize."
     },
     {
       "name": "FLOURISH",
-      "color": "green",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Draw 2 cards."
     },
     {
       "name": "GALACTIC DRIFT",
-      "color": "colorless",
       "rarity": "Endangered",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "On your turn: If you play at least 1 colorless trait, you may play another colorless trait."
     },
     {
       "name": "GLACIAL DRIFT",
-      "color": "blue",
       "rarity": "Unusual",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "Cannot play face value (4) traits or higher."
+      "effect": "You may only play traits with a face value of 3 or lower."
     },
     {
       "name": "HIGH TIDES",
-      "color": "blue",
       "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "Draw 1 card, or discard 1 card from your hand."
+      "effect": "If you play an effectless trait, you may play another effectless trait."
     },
     {
       "name": "LONELY AGE",
-      "color": "colorless",
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Cannot play more than 1 trait on your turn."
     },
     {
       "name": "LUNAR RETREAT",
-      "color": "blue",
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Cannot play purple traits."
     },
     {
-      "name": "MIGRATION SHIFTS",
-      "color": "red",
+      "name": "THE MESSIAH",
       "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
+      "effect": "Play this age in reverse: first player last and last player first."
+    },
+    {
+      "name": "MIGRATION SHIFTS",
+      "rarity": "Scarce",
       "effect": "Cannot play face value (2) traits."
     },
     {
-      "name": "NORTHERN WINDS",
-      "color": "blue",
+      "name": "NATURAL HARMONY",
       "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
+      "effect": "You may not play a trait of the same color as the last trait played."
+    },
+    {
+      "name": "NORTHERN WINDS",
+      "rarity": "Scarce",
       "effect": "Draw 1 card. Then discard 1 card from your hand."
     },
     {
       "name": "PROSPERITY",
-      "color": "green",
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "At the end of your turn, you may choose not to stabilize."
     },
     {
       "name": "REFORESTATION",
-      "color": "green",
       "rarity": "Scarce",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Traits in your trait pile cannot be swapped, stolen, or discarded."
     },
     {
       "name": "TECTONIC SHIFT",
-      "color": "green",
       "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
       "effect": "Cannot play green traits."
     },
     {
-      "name": "TROPICAL LANDS",
-      "color": "green",
-      "rarity": "Common",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "Cannot play colorless traits."
+      "name": "THE BIRTH OF LIFE",
+      "rarity": "",
+      "effect": "Set your Gene Pool to 5. Play 1 trait each turn. Stabilize to end your turn."
     },
     {
-      "name": "THE BIRTH OF LIFE",
-      "color": "",
-      "rarity": "",
-      "isDominant": false,
-      "isAction": false,
-      "faceValue": null,
-      "effect": "Set your Gene Pool to 5. Play 1 trait each turn. Stabilize to end your turn."
+      "name": "TROPICAL LANDS",
+      "rarity": "Common",
+      "effect": "Cannot play colorless traits."
     }
   ],
   "catastrophes": [
     {
       "name": "AI TAKEOVER",
-      "color": "purple",
+      "color": "",
+      "rarity": "Scarce",
       "genePoolEffect": "-1 Gene Pool",
-      "stage2Effect": "Discard all but 2 cards from your hand.",
-      "finalEffect": "Set the face value of all colorless traits to 2. Ignore all colorless effects. (Excluding dominants.)",
+      "stage2Effect": "Discard all but 1 card from your hand.",
+      "finalEffect": "Each colorless trait is now worth 2. Ignore all colorless trait effects. (Excluding dominants.)",
       "worldsEnd": {
         "kind": "aiTakeover",
-        "text": "Set the face value of all colorless traits to 2. Ignore all colorless effects. (Excluding dominants.)"
+        "text": "Each colorless trait is now worth 2. Ignore all colorless trait effects. (Excluding dominants.)"
       }
     },
     {
       "name": "DEUS EX MACHINA",
-      "color": "green",
+      "color": "",
+      "rarity": "Unusual",
       "genePoolEffect": "+0 Gene Pool",
       "stage2Effect": "Stabilize. Crisis averted.",
-      "finalEffect": "Draw 1 card. Add its face value to your final score. (Max +7)",
+      "finalEffect": "Draw a card. Add its face value to your final score (+5 max). Then discard it.",
       "worldsEnd": {
         "kind": "deusExMachina",
-        "max": 7,
-        "text": "Draw 1 card. Add its face value to your final score. (Max +7)"
+        "max": 5,
+        "text": "Draw a card. Add its face value to your final score (+5 max). Then discard it."
       }
     },
     {
       "name": "GLACIAL MELTDOWN",
-      "color": "blue",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 2 cards from your hand at random.",
       "finalEffect": "Discard 1 blue trait from your trait pile.",
@@ -1928,9 +1729,10 @@
     },
     {
       "name": "GREY GOO",
-      "color": "colorless",
+      "color": "",
+      "rarity": "Unusual",
       "genePoolEffect": "+0 Gene Pool",
-      "stage2Effect": "The player(s) with the most traits in their trait pile discard their hand and stabilize.",
+      "stage2Effect": "Discard your hand and stabilize.",
       "finalEffect": "-5 points to the player(s) with the most traits in their trait pile.",
       "worldsEnd": {
         "kind": "pointsToMostTraits",
@@ -1940,7 +1742,8 @@
     },
     {
       "name": "ICE AGE",
-      "color": "blue",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 1 card from your hand for each red trait in your trait pile.",
       "finalEffect": "-1 for each red trait in your trait pile.",
@@ -1953,7 +1756,8 @@
     },
     {
       "name": "MASS EXTINCTION",
-      "color": "colorless",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 1 card from your hand for each colorless trait in your trait pile.",
       "finalEffect": "Discard 1 green trait from your trait pile.",
@@ -1965,8 +1769,9 @@
     },
     {
       "name": "MEGA TSUNAMI",
-      "color": "blue",
-      "genePoolEffect": "+0 Gene Pool",
+      "color": "",
+      "rarity": "Endangered",
+      "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Pass your hand to the right.",
       "finalEffect": "Discard 1 red trait from your trait pile.",
       "worldsEnd": {
@@ -1977,7 +1782,8 @@
     },
     {
       "name": "NUCLEAR WINTER",
-      "color": "red",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Stabilize. Then discard 1 card from your hand.",
       "finalEffect": "Discard 1 colorless trait from your trait pile.",
@@ -1989,19 +1795,21 @@
     },
     {
       "name": "OVERPOPULATION",
-      "color": "green",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "+1 Gene Pool",
-      "stage2Effect": "Draw 1 card for each color (max 4) in your trait pile.",
-      "finalEffect": "+5 points to the player(s) with the fewest traits in their trait pile.",
+      "stage2Effect": "Draw 1 card for every color type in your trait pile.",
+      "finalEffect": "+4 points to the player(s) with the fewest traits in their trait pile.",
       "worldsEnd": {
         "kind": "pointsToFewestTraits",
-        "amount": 5,
-        "text": "+5 points to the player(s) with the fewest traits in their trait pile."
+        "amount": 4,
+        "text": "+4 points to the player(s) with the fewest traits in their trait pile."
       }
     },
     {
       "name": "PULSE EVENT",
-      "color": "purple",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 1 card from your hand for each purple trait in your trait pile.",
       "finalEffect": "Discard 1 purple trait from your trait pile.",
@@ -2013,7 +1821,8 @@
     },
     {
       "name": "RETROVIRUS",
-      "color": "purple",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 1 card from your hand for each green trait in your trait pile.",
       "finalEffect": "-1 for each green trait in your trait pile.",
@@ -2026,9 +1835,10 @@
     },
     {
       "name": "SOLAR FLARE",
-      "color": "red",
-      "genePoolEffect": "+0 Gene Pool",
-      "stage2Effect": "Discard 3 cards from your hand. Draw 2 cards.",
+      "color": "",
+      "rarity": "Common",
+      "genePoolEffect": "-1 Gene Pool",
+      "stage2Effect": "Discard half your hand rounded up.",
       "finalEffect": "-1 for each purple trait in your trait pile.",
       "worldsEnd": {
         "kind": "perColorTraitPoints",
@@ -2039,7 +1849,8 @@
     },
     {
       "name": "SUPER VOLCANO",
-      "color": "red",
+      "color": "",
+      "rarity": "Common",
       "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 1 card from your hand for each blue trait in your trait pile.",
       "finalEffect": "-1 for each blue trait in your trait pile.",
@@ -2052,27 +1863,28 @@
     },
     {
       "name": "THE BIG ONE",
-      "color": "green",
+      "color": "",
+      "rarity": "Unusual",
       "genePoolEffect": "-1 Gene Pool",
-      "stage2Effect": "Pass 2 random cards from your hand to the opponent on your left.",
-      "finalEffect": "-4 if you have 4 or more traits of the same color in your trait pile.",
+      "stage2Effect": "Give 1 card from your hand to the opponent(s) on your left and right.",
+      "finalEffect": "-2 to your score for each color missing from your trait pile.",
       "worldsEnd": {
-        "kind": "flatIfSameColorCount",
-        "amount": -4,
-        "threshold": 4,
-        "text": "-4 if you have 4 or more traits of the same color in your trait pile."
+        "kind": "perMissingColorPoints",
+        "amount": -2,
+        "text": "-2 to your score for each color missing from your trait pile."
       }
     },
     {
       "name": "THE FOUR HORSEMEN",
-      "color": "colorless",
-      "genePoolEffect": "+0 Gene Pool",
+      "color": "",
+      "rarity": "Legendary",
+      "genePoolEffect": "-1 Gene Pool",
       "stage2Effect": "Discard 1 trait from your trait pile.",
-      "finalEffect": "Discard 1 face value (4) trait or higher from your trait pile.",
+      "finalEffect": "Discard 1 trait from your trait pile with a face value of 4 or higher.",
       "worldsEnd": {
         "kind": "discardHighFaceTrait",
         "minValue": 4,
-        "text": "Discard 1 face value (4) trait or higher from your trait pile."
+        "text": "Discard 1 trait from your trait pile with a face value of 4 or higher."
       }
     }
   ],
