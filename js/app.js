@@ -48,9 +48,27 @@
          run a local server instead (see README).</div>`;
       return;
     }
+    sanitizeState(); // drop stale saved data after a card-set update
     render();
     registerSW();
   });
+
+  // A saved game (localStorage) can outlive a data change — e.g. old "KIDNEY (1)"
+  // names or a renamed catastrophe. Strip anything the current data no longer
+  // knows so the app never renders an undefined card.
+  function sanitizeState() {
+    if (!G || !Array.isArray(G.players)) return;
+    for (const p of G.players) {
+      if (p.handEffectCards == null) p.handEffectCards = 0;
+      if (Array.isArray(p.pile)) p.pile = p.pile.filter((n) => DB.traitByName[n]);
+    }
+    if (G.catastropheName && !DB.cataByName[G.catastropheName]) {
+      G.catastropheName = "";
+    }
+    G.result = null; // any prior result was computed against the old data
+    if (G.screen === "results") G.screen = "worldsend";
+    save();
+  }
 
   const $ = (sel, el = document) => el.querySelector(sel);
 
